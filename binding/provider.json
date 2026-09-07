@@ -1,0 +1,74 @@
+{
+  "document_kind": "provider",
+  "contract": "openteams/satisfier-binding [0.1-draft]",
+  "provider": {
+    "id": "openteams/cog-openrouter",
+    "version": "0.1.0"
+  },
+  "capability": "model-endpoint/openai-compatible",
+  "compositions": [
+    "model"
+  ],
+  "binding_interface": "bind",
+  "configuration_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "model_id": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+        "description": "Exact catalog model ID; router, preset, variant and latest aliases are unsupported."
+      },
+      "allowed_upstreams": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "Base routing slug from the model endpoint catalog. Region/variant slugs unsupported in this reference."
+        },
+        "uniqueItems": true,
+        "minItems": 1,
+        "maxItems": 8
+      },
+      "allow_provider_fallback": {
+        "type": "boolean"
+      },
+      "gateway_base_url": {
+        "type": "string",
+        "pattern": "^http://127\\.0\\.0\\.1:[0-9]{4,5}$",
+        "description": "Host-owned local gateway address, without path."
+      },
+      "max_output_tokens": {
+        "type": "integer",
+        "minimum": 128,
+        "maximum": 32768
+      }
+    },
+    "required": [
+      "model_id",
+      "allowed_upstreams",
+      "allow_provider_fallback",
+      "gateway_base_url",
+      "max_output_tokens"
+    ]
+  },
+  "model_requirement": null,
+  "credential_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "api_key",
+      "gateway_token"
+    ],
+    "properties": {
+      "api_key": {
+        "const": "env:OPENROUTER_API_KEY"
+      },
+      "gateway_token": {
+        "const": "env:OPENROUTER_COG_TOKEN"
+      }
+    }
+  }
+}

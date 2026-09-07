@@ -1,0 +1,13 @@
+{
+  "model": "openai/gpt-4.1-mini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Return a JSON object with a greeting field."
+    }
+  ],
+  "response_format": {
+    "type": "json_object"
+  },
+  "max_tokens": 128
+}

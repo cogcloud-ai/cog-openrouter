@@ -1,0 +1,42 @@
+{
+  "document_kind": "bind_request",
+  "contract": "openteams/satisfier-binding [0.1-draft]",
+  "request_id": "request-001",
+  "binding_id": "binding-author-model",
+  "revision": 1,
+  "provider": {
+    "id": "openteams/cog-openrouter",
+    "version": "0.1.0"
+  },
+  "requirement": {
+    "id": "author-inference",
+    "capability": "model-endpoint/openai-compatible",
+    "accepted_compositions": [
+      "model"
+    ],
+    "features": [
+      "text-generation",
+      "json-output"
+    ],
+    "model_id": "openai/gpt-4.1-mini",
+    "allowed_localities": [
+      "cloud"
+    ],
+    "evidence_level": "declaration",
+    "identity_verified": false,
+    "revision_pinned": false
+  },
+  "configuration": {
+    "model_id": "openai/gpt-4.1-mini",
+    "allowed_upstreams": [
+      "openai"
+    ],
+    "allow_provider_fallback": false,
+    "gateway_base_url": "http://127.0.0.1:8113",
+    "max_output_tokens": 4096
+  },
+  "credential_refs": {
+    "api_key": "env:OPENROUTER_API_KEY",
+    "gateway_token": "env:OPENROUTER_COG_TOKEN"
+  }
+}

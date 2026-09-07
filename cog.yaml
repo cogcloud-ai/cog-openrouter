@@ -1,0 +1,46 @@
+schema: openteams/cog-manifest [0.1]
+id: openteams/cog-openrouter
+version: "0.1.0"
+summary: Provides model inference through explicit OpenRouter model bindings.
+owner: trent@openteams.com
+license: BSD-3-Clause
+kind: model
+model:
+  descriptor: true
+  access: configurable-provider
+  carries_weights: false
+memory: none
+prohibits: [agent_tool_execution, silent_model_substitution, self_admission, credential_export]
+requires: []
+io:
+  accepts: [model_binding_request, chat_completion_request]
+  produces: [candidate_binding, chat_completion]
+extensions:
+  satisfier_binding:
+    contract: openteams/satisfier-binding [0.1-draft]
+    declaration: binding/provider.json
+interfaces:
+  - name: inference
+    kind: http-json
+    task: serve
+    audience: usage
+    endpoint: http://127.0.0.1:8113
+    default: true
+  - name: bind
+    kind: command
+    task: bind
+    audience: lifecycle
+  - name: catalog
+    kind: command
+    task: models
+    audience: lifecycle
+  - name: health
+    kind: command
+    task: check
+    audience: lifecycle
+  - name: card
+    kind: command
+    task: card
+    audience: lifecycle
+evaluation:
+  tests: [tests/test_reference.py]

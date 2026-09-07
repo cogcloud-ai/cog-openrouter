@@ -1,0 +1,22 @@
+[workspace]
+name = "cog-openrouter"
+version = "0.1.0"
+description = "Configurable OpenRouter model-access Cog and independent reference host."
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64"]
+
+[dependencies]
+python = ">=3.11"
+pyyaml = "*"
+jsonschema = "*"
+
+[tasks]
+card = "python src/cli.py card"
+models = "python src/cli.py models"
+bind = "python src/cli.py bind"
+check = "python src/cli.py check"
+serve = "python src/cli.py serve"
+admit = "python src/cli.py admit"
+revoke = "python src/cli.py revoke"
+infer = "python src/cli.py infer"
+test = "python -m unittest discover -s tests -v"
