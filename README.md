@@ -144,3 +144,16 @@ core/profile declarations and honestly reports that its template-runtime checks
 do not apply. `pixi run test` is this package's actual runtime verification.
 
 See [verification](docs/verification.md) and [API sources](docs/api-sources.md).
+
+## Workbench integration
+
+The optional `extensions.workbench_host` declaration names the separate host's
+`admit`, `inspect-binding` and `revoke` tasks for the workbench suite. These do not
+become provider operations or allow `bind` to self-admit. Workbench stores the
+OpenRouter host state separately, rechecks it before dependent turns and can
+start the existing authenticated loopback gateway. `inspect-binding` validates
+record integrity and revocation without performing model inference.
+
+The vendored unadopted schema now includes combined-harness turn references and
+command transport used by sibling reference Cogs; OpenRouter remains model-only
+and keeps its original inference protocol.

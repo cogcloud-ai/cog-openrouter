@@ -545,7 +545,8 @@
             "protocol": {
               "enum": [
                 "openai-chat-completions-v1",
-                "cog-harness-turn-v1"
+                "cog-harness-turn-v1",
+                "cog-harness-turn-command-v1"
               ]
             },
             "address": {
@@ -761,7 +762,10 @@
               "invocation": {
                 "properties": {
                   "protocol": {
-                    "const": "cog-harness-turn-v1"
+                    "enum": [
+                      "cog-harness-turn-v1",
+                      "cog-harness-turn-command-v1"
+                    ]
                   }
                 }
               }
@@ -774,7 +778,20 @@
               },
               "model_binding": {
                 "type": "null"
-              },
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "composition": {
+                "const": "model"
+              }
+            }
+          },
+          "then": {
+            "properties": {
               "invocation": {
                 "properties": {
                   "protocol": {
@@ -852,7 +869,14 @@
           "$ref": "#/$defs/binding_reference"
         },
         "model_binding": {
-          "$ref": "#/$defs/binding_reference"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/binding_reference"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "consumer": {
           "type": "object",
@@ -947,7 +971,14 @@
           "$ref": "#/$defs/binding_reference"
         },
         "model_binding": {
-          "$ref": "#/$defs/binding_reference"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/binding_reference"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "result": {},
         "tool_uses": {

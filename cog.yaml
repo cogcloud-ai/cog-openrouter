@@ -16,6 +16,9 @@ io:
   accepts: [model_binding_request, chat_completion_request]
   produces: [candidate_binding, chat_completion]
 extensions:
+  workbench_host:
+    contract: openteams/workbench-host [0.1-draft]
+    tasks: {admit: admit, inspect: inspect-binding, revoke: revoke}
   satisfier_binding:
     contract: openteams/satisfier-binding [0.1-draft]
     declaration: binding/provider.json

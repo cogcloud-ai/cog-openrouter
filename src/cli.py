@@ -29,7 +29,8 @@ def main(argv=None):
     i = sub.add_parser('infer'); i.add_argument('--request', required=True); i.add_argument('--binding-id', required=True); i.add_argument('--revision', type=int, required=True)
     i.add_argument('--gateway-url', default='http://127.0.0.1:8113')
     r = sub.add_parser('revoke'); r.add_argument('--binding-id', required=True); r.add_argument('--revision', type=int, required=True)
-    for cmd in (a, s, i, r): cmd.add_argument('--state-dir', default='state')
+    inspect = sub.add_parser('inspect-binding'); inspect.add_argument('--binding-id', required=True); inspect.add_argument('--revision', type=int, required=True)
+    for cmd in (a, s, i, r, inspect): cmd.add_argument('--state-dir', default='state')
     args = p.parse_args(argv)
     api = OpenRouterHTTP()
     try:
@@ -54,6 +55,8 @@ def main(argv=None):
         elif args.task == 'admit':
             binding = admit(read(args.request), read(args.candidate), api, Store(args.state_dir), args.gateway_url)
             result = envelope('reference-host/admit', binding)
+        elif args.task == 'inspect-binding':
+            result = envelope('reference-host/inspect-binding', Store(args.state_dir).load(args.binding_id, args.revision)['binding'])
         elif args.task == 'revoke':
             Store(args.state_dir).revoke(args.binding_id, args.revision)
             result = envelope('reference-host/revoke', {'revoked': True})
