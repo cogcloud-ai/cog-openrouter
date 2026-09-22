@@ -157,3 +157,10 @@ record integrity and revocation without performing model inference.
 The vendored unadopted schema now includes combined-harness turn references and
 command transport used by sibling reference Cogs; OpenRouter remains model-only
 and keeps its original inference protocol.
+
+## License
+
+Copyright 2026 OpenTeams. Licensed under the [Apache License 2.0](LICENSE).
+Third-party dependencies and external model services retain their own licenses
+and terms. Previously published BSD-3-Clause versions remain available under
+that license.

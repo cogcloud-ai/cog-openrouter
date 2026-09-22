@@ -3,7 +3,7 @@ id: openteams/cog-openrouter
 version: "0.1.0"
 summary: Provides model inference through explicit OpenRouter model bindings.
 owner: trent@openteams.com
-license: BSD-3-Clause
+license: Apache-2.0
 kind: model
 model:
   descriptor: true

@@ -3,7 +3,7 @@ type: cog [0.1]
 name: cog-openrouter
 description: Configurable model-access provider using OpenRouter, with explicit model bindings and no agent harness.
 version: "0.1.0"
-license: BSD-3-Clause
+license: Apache-2.0
 publisher: OpenTeams
 manifest: cog.yaml
 manifest_schema: openteams/cog-manifest [0.1]
