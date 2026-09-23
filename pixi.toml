@@ -1,4 +1,5 @@
 [workspace]
+license = "Apache-2.0"
 name = "cog-openrouter"
 version = "0.1.0"
 description = "Configurable OpenRouter model-access Cog and independent reference host."
